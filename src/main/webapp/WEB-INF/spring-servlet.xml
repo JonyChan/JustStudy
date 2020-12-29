@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.alibaba.com/schema/stat"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.alibaba.com/schema/stat http://www.alibaba.com/schema/stat.xsd">
+<!--接口请求相关的配置-->
+
+<!--    上下文注解被使用-->
+    <context:annotation-config></context:annotation-config>
+<!--可启动注解-->
+    <mvc:annotation-driven/>
+
+<!--    包扫描-->
+    <context:component-scan base-package="com.test.controller"/>
+    <context:component-scan base-package="com.test.service"/>
+
+<!-- 告诉请求 请求的路径   -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+
+<!--    以什么格式返回 试图渲染-->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+
+<!--    deal with the json returned-->
+    <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+
+<!--    deal with the jsp returned-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/views"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>

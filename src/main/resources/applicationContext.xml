@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--数据库配置-->
+
+<!--    类似于配置占位符-->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+<!--    配置位置信息，name可选location and locations second one respond the list -->
+        <property name="locations">
+            <list>
+<!--    get the information of the configuration in the property file-->
+                <value>classpath:settings.properties</value>
+            </list>
+        </property>
+    </bean>
+<!--数据库连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${db.driverClassName}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}" />
+<!--        初始化大小-->
+        <property name="initialSize" value="3" />
+<!--        最小空余数量-->
+        <property name="minIdle" value="3" />
+<!--        最大的活跃数量-->
+        <property name="maxActive" value="20" />
+        <property name="maxWait" value="60000" />
+        <property name="filters" value="stat,wall"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:"
+    </bean>
+</beans>
