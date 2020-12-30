@@ -5,9 +5,9 @@
 <configuration>
 
 <!--    对应configuration -->
-    <settings>
-        <setting name="cache" value="false"/>
-    </settings>
+<!--    <settings>-->
+<!--        <setting name="cache" value="false"/>-->
+<!--    </settings>-->
 
 <!--&lt;!&ndash;   方便在SQL中写&ndash;&gt;-->
 <!--    <typeAliases>-->

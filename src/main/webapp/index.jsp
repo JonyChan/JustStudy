@@ -10,5 +10,8 @@
     <uri>http://mycompany.com</uri>
 
     <!-- Invoke 'Generate' action to add tags or functions -->
+    <html>
+    this is
+    </html>
 
 </taglib>

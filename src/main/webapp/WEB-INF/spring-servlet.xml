@@ -17,7 +17,7 @@
 <!-- 告诉请求 请求的路径   -->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 
-<!--    以什么格式返回 试图渲染-->
+<!--    以什么格式返回 视图渲染-->
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
 
 <!--    deal with the json returned-->
