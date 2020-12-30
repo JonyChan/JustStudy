@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.SysRolePermissionMapper">
+  <resultMap id="BaseResultMap" type="com.test.model.SysRolePermission">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="perssion_id" jdbcType="BIGINT" property="perssionId" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="operator_ip" jdbcType="VARCHAR" property="operatorIp" />
+    <result column="operator_time" jdbcType="TIMESTAMP" property="operatorTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, perssion_id, role_id, operator, operator_ip, operator_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role_permission
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_role_permission
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.test.model.SysRolePermission">
+    insert into sys_role_permission (id, perssion_id, role_id, 
+      operator, operator_ip, operator_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{perssionId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, 
+      #{operator,jdbcType=VARCHAR}, #{operatorIp,jdbcType=VARCHAR}, #{operatorTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.model.SysRolePermission">
+    insert into sys_role_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="perssionId != null">
+        perssion_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="operatorIp != null">
+        operator_ip,
+      </if>
+      <if test="operatorTime != null">
+        operator_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="perssionId != null">
+        #{perssionId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorIp != null">
+        #{operatorIp,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorTime != null">
+        #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.SysRolePermission">
+    update sys_role_permission
+    <set>
+      <if test="perssionId != null">
+        perssion_id = #{perssionId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorIp != null">
+        operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorTime != null">
+        operator_time = #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.model.SysRolePermission">
+    update sys_role_permission
+    set perssion_id = #{perssionId,jdbcType=BIGINT},
+      role_id = #{roleId,jdbcType=BIGINT},
+      operator = #{operator,jdbcType=VARCHAR},
+      operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      operator_time = #{operatorTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.test.model.SysRolePermission">
+    <id column="permission_id" jdbcType="VARCHAR" property="permissionId" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    permission_id, role_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role_permission
+    where permission_id = #{permissionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_role_permission
+    where permission_id = #{permissionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.test.model.SysRolePermission">
+    insert into sys_role_permission (permission_id, role_id)
+    values (#{permissionId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.model.SysRolePermission">
+    insert into sys_role_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        permission_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.SysRolePermission">
+    update sys_role_permission
+    <set>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where permission_id = #{permissionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.model.SysRolePermission">
+    update sys_role_permission
+    set role_id = #{roleId,jdbcType=VARCHAR}
+    where permission_id = #{permissionId,jdbcType=VARCHAR}
+  </update>
+</mapper>

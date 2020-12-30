@@ -5,4 +5,5 @@ package com.test.dao;
  * @Created date:12/29/20 10:46 PM
  */
 public interface TestDao {
+
 }
