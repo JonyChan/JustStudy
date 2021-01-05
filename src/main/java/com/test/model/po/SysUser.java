@@ -2,10 +2,32 @@ package com.test.model.po;
 
 import lombok.Data;
 
-/**
- * @Created by:chenxu
- * @Created date:12/30/20 10:41 AM
- */
+import java.util.Date;
+
 @Data
 public class SysUser {
+
+    private Long id;
+
+    private String username;
+
+    private String password;
+
+    private String phone;
+
+    private String mail;
+
+    private Long deptId;
+
+    private Integer status;
+
+    private String remark;
+
+    private String operator;
+
+    private String operatorIp;
+
+    private Date operatorTime;
+
+
 }

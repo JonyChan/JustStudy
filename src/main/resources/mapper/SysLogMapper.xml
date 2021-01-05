@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.SysLogMapper" >
+  <resultMap id="BaseResultMap" type="com.test.model.SysLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="target_id" property="targetId" jdbcType="BIGINT" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="operator_ip" property="operatorIp" jdbcType="VARCHAR" />
+    <result column="operator_time" property="operatorTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.test.model.SysLogWithBLOBs" extends="BaseResultMap" >
+    <result column="old_value" property="oldValue" jdbcType="LONGVARCHAR" />
+    <result column="new_value" property="newValue" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, target_id, operator, operator_ip, operator_time, status
+  </sql>
+  <sql id="Blob_Column_List" >
+    old_value, new_value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.test.model.SysLogWithBLOBs" >
+    insert into sys_log (id, type, target_id, 
+      operator, operator_ip, operator_time, 
+      status, old_value, new_value
+      )
+    values (#{id,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{targetId,jdbcType=BIGINT}, 
+      #{operator,jdbcType=VARCHAR}, #{operatorIp,jdbcType=VARCHAR}, #{operatorTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{oldValue,jdbcType=LONGVARCHAR}, #{newValue,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.model.SysLogWithBLOBs" >
+    insert into sys_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="targetId != null" >
+        target_id,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="operatorIp != null" >
+        operator_ip,
+      </if>
+      <if test="operatorTime != null" >
+        operator_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="oldValue != null" >
+        old_value,
+      </if>
+      <if test="newValue != null" >
+        new_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="targetId != null" >
+        #{targetId,jdbcType=BIGINT},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorIp != null" >
+        #{operatorIp,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorTime != null" >
+        #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="oldValue != null" >
+        #{oldValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newValue != null" >
+        #{newValue,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.SysLogWithBLOBs" >
+    update sys_log
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="targetId != null" >
+        target_id = #{targetId,jdbcType=BIGINT},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorIp != null" >
+        operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorTime != null" >
+        operator_time = #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="oldValue != null" >
+        old_value = #{oldValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newValue != null" >
+        new_value = #{newValue,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.test.model.SysLogWithBLOBs" >
+    update sys_log
+    set type = #{type,jdbcType=INTEGER},
+      target_id = #{targetId,jdbcType=BIGINT},
+      operator = #{operator,jdbcType=VARCHAR},
+      operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      operator_time = #{operatorTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      old_value = #{oldValue,jdbcType=LONGVARCHAR},
+      new_value = #{newValue,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.model.SysLog" >
+    update sys_log
+    set type = #{type,jdbcType=INTEGER},
+      target_id = #{targetId,jdbcType=BIGINT},
+      operator = #{operator,jdbcType=VARCHAR},
+      operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      operator_time = #{operatorTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

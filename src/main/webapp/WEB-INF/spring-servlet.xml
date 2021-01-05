@@ -15,6 +15,9 @@
     <context:component-scan base-package="com.test.controller"/>
     <context:component-scan base-package="com.test.service"/>
 
+<!--    禁止懒加载，启动时候就加载-->
+    <bean class="com.test.common.ApplicationContextHelper" lazy-init="false" />
+
 <!-- 告诉请求 请求的路径   -->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 
