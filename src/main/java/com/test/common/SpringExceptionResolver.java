@@ -1,5 +1,6 @@
 package com.test.common;
 
+import com.test.exception.ParamException;
 import com.test.exception.SpringCloudException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -22,7 +23,7 @@ public class SpringExceptionResolver implements HandlerExceptionResolver {
         ModelAndView mv;
 
         if (url.endsWith(".json")){
-            if (e instanceof SpringCloudException){
+            if (e instanceof SpringCloudException || e instanceof ParamException){
                 JsonData res = JsonData.fail(e.getMessage());
                 mv= new ModelAndView("jsonView",res.toMap());
             }else {
