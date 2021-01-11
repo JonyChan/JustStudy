@@ -1,4 +1,4 @@
-package com.test.mapper;
+package com.test.dao;
 
 import com.test.model.po.SysLog;
 import com.test.model.po.SysLogWithBLOBs;

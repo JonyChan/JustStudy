@@ -10,10 +10,14 @@
     <context:annotation-config/>
 <!--可启动注解-->
     <mvc:annotation-driven/>
+    <mvc:interceptors>
+        <bean class="com.test.common.HttpInterceptor" />
+    </mvc:interceptors>
 
 <!--    包扫描-->
     <context:component-scan base-package="com.test.controller"/>
     <context:component-scan base-package="com.test.service"/>
+    <context:component-scan base-package="com.test.dao"/>
 
 <!--    禁止懒加载，启动时候就加载-->
     <bean class="com.test.common.ApplicationContextHelper" lazy-init="false" />

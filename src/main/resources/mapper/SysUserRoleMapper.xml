@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.test.dao.SysUserRoleMapper">
-  <resultMap id="BaseResultMap" type="com.test.model.SysUserRole">
+  <resultMap id="BaseResultMap" type="com.test.model.po.SysUserRole">
     <id column="role_id" jdbcType="VARCHAR" property="roleId" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
   </resultMap>
@@ -18,11 +18,11 @@
     delete from sys_user_role
     where role_id = #{roleId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.test.model.SysUserRole">
+  <insert id="insert" parameterType="com.test.model.po.SysUserRole">
     insert into sys_user_role (role_id, user_id)
     values (#{roleId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.test.model.SysUserRole">
+  <insert id="insertSelective" parameterType="com.test.model.po.SysUserRole">
     insert into sys_user_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="roleId != null">
@@ -41,7 +41,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.SysUserRole">
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.po.SysUserRole">
     update sys_user_role
     <set>
       <if test="userId != null">
@@ -50,111 +50,111 @@
     </set>
     where role_id = #{roleId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.test.model.SysUserRole">
+  <update id="updateByPrimaryKey" parameterType="com.test.model.po.SysUserRole">
     update sys_user_role
     set user_id = #{userId,jdbcType=VARCHAR}
     where role_id = #{roleId,jdbcType=VARCHAR}
   </update>
-  <resultMap id="BaseResultMap" type="com.test.model.SysUserRole">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <id column="role_id" jdbcType="BIGINT" property="roleId" />
-    <result column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="operator" jdbcType="VARCHAR" property="operator" />
-    <result column="operator_ip" jdbcType="VARCHAR" property="operatorIp" />
-    <result column="operator_time" jdbcType="TIMESTAMP" property="operatorTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, role_id, user_id, operator, operator_ip, operator_time
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="com.test.model.SysUserRoleKey" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_user_role
-    where id = #{id,jdbcType=BIGINT}
-      and role_id = #{roleId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.test.model.SysUserRoleKey">
-    delete from sys_user_role
-    where id = #{id,jdbcType=BIGINT}
-      and role_id = #{roleId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.test.model.SysUserRole">
-    insert into sys_user_role (id, role_id, user_id, 
-      operator, operator_ip, operator_time
-      )
-    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
-      #{operator,jdbcType=VARCHAR}, #{operatorIp,jdbcType=VARCHAR}, #{operatorTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.test.model.SysUserRole">
-    insert into sys_user_role
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="roleId != null">
-        role_id,
-      </if>
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="operator != null">
-        operator,
-      </if>
-      <if test="operatorIp != null">
-        operator_ip,
-      </if>
-      <if test="operatorTime != null">
-        operator_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="roleId != null">
-        #{roleId,jdbcType=BIGINT},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="operator != null">
-        #{operator,jdbcType=VARCHAR},
-      </if>
-      <if test="operatorIp != null">
-        #{operatorIp,jdbcType=VARCHAR},
-      </if>
-      <if test="operatorTime != null">
-        #{operatorTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.SysUserRole">
-    update sys_user_role
-    <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="operator != null">
-        operator = #{operator,jdbcType=VARCHAR},
-      </if>
-      <if test="operatorIp != null">
-        operator_ip = #{operatorIp,jdbcType=VARCHAR},
-      </if>
-      <if test="operatorTime != null">
-        operator_time = #{operatorTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-      and role_id = #{roleId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.test.model.SysUserRole">
-    update sys_user_role
-    set user_id = #{userId,jdbcType=BIGINT},
-      operator = #{operator,jdbcType=VARCHAR},
-      operator_ip = #{operatorIp,jdbcType=VARCHAR},
-      operator_time = #{operatorTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
-      and role_id = #{roleId,jdbcType=BIGINT}
-  </update>
+<!--  <resultMap id="BaseResultMap" type="com.test.model.po.SysUserRole">-->
+<!--    <id column="id" jdbcType="BIGINT" property="id" />-->
+<!--    <id column="role_id" jdbcType="BIGINT" property="roleId" />-->
+<!--    <result column="user_id" jdbcType="BIGINT" property="userId" />-->
+<!--    <result column="operator" jdbcType="VARCHAR" property="operator" />-->
+<!--    <result column="operator_ip" jdbcType="VARCHAR" property="operatorIp" />-->
+<!--    <result column="operator_time" jdbcType="TIMESTAMP" property="operatorTime" />-->
+<!--  </resultMap>-->
+<!--  <sql id="Base_Column_List">-->
+<!--    id, role_id, user_id, operator, operator_ip, operator_time-->
+<!--  </sql>-->
+<!--  <select id="selectByPrimaryKey" parameterType="com.test.model.po.SysUserRoleKey" resultMap="BaseResultMap">-->
+<!--    select -->
+<!--    <include refid="Base_Column_List" />-->
+<!--    from sys_user_role-->
+<!--    where id = #{id,jdbcType=BIGINT}-->
+<!--      and role_id = #{roleId,jdbcType=BIGINT}-->
+<!--  </select>-->
+<!--  <delete id="deleteByPrimaryKey" parameterType="com.test.model.po.SysUserRoleKey">-->
+<!--    delete from sys_user_role-->
+<!--    where id = #{id,jdbcType=BIGINT}-->
+<!--      and role_id = #{roleId,jdbcType=BIGINT}-->
+<!--  </delete>-->
+<!--  <insert id="insert" parameterType="com.test.model.po.SysUserRole">-->
+<!--    insert into sys_user_role (id, role_id, user_id, -->
+<!--      operator, operator_ip, operator_time-->
+<!--      )-->
+<!--    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, -->
+<!--      #{operator,jdbcType=VARCHAR}, #{operatorIp,jdbcType=VARCHAR}, #{operatorTime,jdbcType=TIMESTAMP}-->
+<!--      )-->
+<!--  </insert>-->
+<!--  <insert id="insertSelective" parameterType="com.test.model.po.SysUserRole">-->
+<!--    insert into sys_user_role-->
+<!--    <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--      <if test="id != null">-->
+<!--        id,-->
+<!--      </if>-->
+<!--      <if test="roleId != null">-->
+<!--        role_id,-->
+<!--      </if>-->
+<!--      <if test="userId != null">-->
+<!--        user_id,-->
+<!--      </if>-->
+<!--      <if test="operator != null">-->
+<!--        operator,-->
+<!--      </if>-->
+<!--      <if test="operatorIp != null">-->
+<!--        operator_ip,-->
+<!--      </if>-->
+<!--      <if test="operatorTime != null">-->
+<!--        operator_time,-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--    <trim prefix="values (" suffix=")" suffixOverrides=",">-->
+<!--      <if test="id != null">-->
+<!--        #{id,jdbcType=BIGINT},-->
+<!--      </if>-->
+<!--      <if test="roleId != null">-->
+<!--        #{roleId,jdbcType=BIGINT},-->
+<!--      </if>-->
+<!--      <if test="userId != null">-->
+<!--        #{userId,jdbcType=BIGINT},-->
+<!--      </if>-->
+<!--      <if test="operator != null">-->
+<!--        #{operator,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="operatorIp != null">-->
+<!--        #{operatorIp,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="operatorTime != null">-->
+<!--        #{operatorTime,jdbcType=TIMESTAMP},-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--  </insert>-->
+<!--  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.po.SysUserRole">-->
+<!--    update sys_user_role-->
+<!--    <set>-->
+<!--      <if test="userId != null">-->
+<!--        user_id = #{userId,jdbcType=BIGINT},-->
+<!--      </if>-->
+<!--      <if test="operator != null">-->
+<!--        operator = #{operator,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="operatorIp != null">-->
+<!--        operator_ip = #{operatorIp,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="operatorTime != null">-->
+<!--        operator_time = #{operatorTime,jdbcType=TIMESTAMP},-->
+<!--      </if>-->
+<!--    </set>-->
+<!--    where id = #{id,jdbcType=BIGINT}-->
+<!--      and role_id = #{roleId,jdbcType=BIGINT}-->
+<!--  </update>-->
+<!--  <update id="updateByPrimaryKey" parameterType="com.test.model.po.SysUserRole">-->
+<!--    update sys_user_role-->
+<!--    set user_id = #{userId,jdbcType=BIGINT},-->
+<!--      operator = #{operator,jdbcType=VARCHAR},-->
+<!--      operator_ip = #{operatorIp,jdbcType=VARCHAR},-->
+<!--      operator_time = #{operatorTime,jdbcType=TIMESTAMP}-->
+<!--    where id = #{id,jdbcType=BIGINT}-->
+<!--      and role_id = #{roleId,jdbcType=BIGINT}-->
+<!--  </update>-->
 </mapper>

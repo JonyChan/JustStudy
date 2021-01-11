@@ -1,4 +1,4 @@
-package com.test.mapper;
+package com.test.dao;
 
 
 import com.test.model.po.SysRolePermission;

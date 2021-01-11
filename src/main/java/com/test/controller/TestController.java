@@ -1,9 +1,13 @@
 package com.test.controller;
 
+import com.test.common.ApplicationContextHelper;
 import com.test.common.JsonData;
 import com.test.exception.ParamException;
+import com.test.dao.SysUserMapper;
+import com.test.model.po.SysUser;
 import com.test.param.TestVo;
 import com.test.util.BeanValidator;
+import com.test.util.JsonMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.MapUtils;
 import org.springframework.stereotype.Controller;
@@ -51,6 +55,9 @@ public class TestController {
     @RequestMapping("/validate2.json")
     public JsonData validate2(TestVo vo) throws ParamException {
         log.info("validate");
+        SysUserMapper userMapper = ApplicationContextHelper.popBean(SysUserMapper.class);
+        SysUser user = userMapper.selectByPrimaryKey(1L);
+        log.info(JsonMapper.obj2String(user));
         BeanValidator.check(vo);
         return JsonData.success("hello");
     }

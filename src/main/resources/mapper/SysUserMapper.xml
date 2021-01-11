@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.test.dao.SysUserMapper">
-  <resultMap id="BaseResultMap" type="com.test.model.SysUser">
+  <resultMap id="BaseResultMap" type="com.test.model.po.SysUser">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -28,7 +28,7 @@
     delete from sys_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.test.model.SysUser">
+  <insert id="insert" parameterType="com.test.model.po.SysUser">
     insert into sys_user (id, username, password, 
       phone, mail, dept_id, 
       status, remark, operator, 
@@ -38,7 +38,7 @@
       #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
       #{operatorIp,jdbcType=VARCHAR}, #{operatorTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.test.model.SysUser">
+  <insert id="insertSelective" parameterType="com.test.model.po.SysUser">
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -111,7 +111,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.SysUser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.po.SysUser">
     update sys_user
     <set>
       <if test="username != null">
@@ -147,7 +147,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.test.model.SysUser">
+  <update id="updateByPrimaryKey" parameterType="com.test.model.po.SysUser">
     update sys_user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -161,199 +161,199 @@
       operator_time = #{operatorTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="com.test.model.SysUser">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="is_admin" jdbcType="BIT" property="isAdmin" />
-    <result column="is_enabled" jdbcType="BIT" property="isEnabled" />
-    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
-    <result column="last_modified_date" jdbcType="TIMESTAMP" property="lastModifiedDate" />
-    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
-    <result column="last_modified_by" jdbcType="VARCHAR" property="lastModifiedBy" />
-    <result column="is_display" jdbcType="BIT" property="isDisplay" />
-    <result column="comment" jdbcType="VARCHAR" property="comment" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, username, mobile, email, name, password, is_admin, is_enabled, created_date, 
-    last_modified_date, created_by, last_modified_by, is_display, comment
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_user
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from sys_user
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.test.model.SysUser">
-    insert into sys_user (id, username, mobile, 
-      email, name, password, 
-      is_admin, is_enabled, created_date, 
-      last_modified_date, created_by, last_modified_by, 
-      is_display, comment)
-    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{isAdmin,jdbcType=BIT}, #{isEnabled,jdbcType=BIT}, #{createdDate,jdbcType=TIMESTAMP}, 
-      #{lastModifiedDate,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{lastModifiedBy,jdbcType=VARCHAR}, 
-      #{isDisplay,jdbcType=BIT}, #{comment,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.test.model.SysUser">
-    insert into sys_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="username != null">
-        username,
-      </if>
-      <if test="mobile != null">
-        mobile,
-      </if>
-      <if test="email != null">
-        email,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="isAdmin != null">
-        is_admin,
-      </if>
-      <if test="isEnabled != null">
-        is_enabled,
-      </if>
-      <if test="createdDate != null">
-        created_date,
-      </if>
-      <if test="lastModifiedDate != null">
-        last_modified_date,
-      </if>
-      <if test="createdBy != null">
-        created_by,
-      </if>
-      <if test="lastModifiedBy != null">
-        last_modified_by,
-      </if>
-      <if test="isDisplay != null">
-        is_display,
-      </if>
-      <if test="comment != null">
-        comment,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="isAdmin != null">
-        #{isAdmin,jdbcType=BIT},
-      </if>
-      <if test="isEnabled != null">
-        #{isEnabled,jdbcType=BIT},
-      </if>
-      <if test="createdDate != null">
-        #{createdDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastModifiedDate != null">
-        #{lastModifiedDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createdBy != null">
-        #{createdBy,jdbcType=VARCHAR},
-      </if>
-      <if test="lastModifiedBy != null">
-        #{lastModifiedBy,jdbcType=VARCHAR},
-      </if>
-      <if test="isDisplay != null">
-        #{isDisplay,jdbcType=BIT},
-      </if>
-      <if test="comment != null">
-        #{comment,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.SysUser">
-    update sys_user
-    <set>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        mobile = #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="isAdmin != null">
-        is_admin = #{isAdmin,jdbcType=BIT},
-      </if>
-      <if test="isEnabled != null">
-        is_enabled = #{isEnabled,jdbcType=BIT},
-      </if>
-      <if test="createdDate != null">
-        created_date = #{createdDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastModifiedDate != null">
-        last_modified_date = #{lastModifiedDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createdBy != null">
-        created_by = #{createdBy,jdbcType=VARCHAR},
-      </if>
-      <if test="lastModifiedBy != null">
-        last_modified_by = #{lastModifiedBy,jdbcType=VARCHAR},
-      </if>
-      <if test="isDisplay != null">
-        is_display = #{isDisplay,jdbcType=BIT},
-      </if>
-      <if test="comment != null">
-        comment = #{comment,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.test.model.SysUser">
-    update sys_user
-    set username = #{username,jdbcType=VARCHAR},
-      mobile = #{mobile,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      is_admin = #{isAdmin,jdbcType=BIT},
-      is_enabled = #{isEnabled,jdbcType=BIT},
-      created_date = #{createdDate,jdbcType=TIMESTAMP},
-      last_modified_date = #{lastModifiedDate,jdbcType=TIMESTAMP},
-      created_by = #{createdBy,jdbcType=VARCHAR},
-      last_modified_by = #{lastModifiedBy,jdbcType=VARCHAR},
-      is_display = #{isDisplay,jdbcType=BIT},
-      comment = #{comment,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
+<!--  <resultMap id="BaseResultMap" type="com.test.model.po.SysUser">-->
+<!--    <id column="id" jdbcType="VARCHAR" property="id" />-->
+<!--    <result column="username" jdbcType="VARCHAR" property="username" />-->
+<!--    <result column="mobile" jdbcType="VARCHAR" property="mobile" />-->
+<!--    <result column="email" jdbcType="VARCHAR" property="email" />-->
+<!--    <result column="name" jdbcType="VARCHAR" property="name" />-->
+<!--    <result column="password" jdbcType="VARCHAR" property="password" />-->
+<!--    <result column="is_admin" jdbcType="BIT" property="isAdmin" />-->
+<!--    <result column="is_enabled" jdbcType="BIT" property="isEnabled" />-->
+<!--    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />-->
+<!--    <result column="last_modified_date" jdbcType="TIMESTAMP" property="lastModifiedDate" />-->
+<!--    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />-->
+<!--    <result column="last_modified_by" jdbcType="VARCHAR" property="lastModifiedBy" />-->
+<!--    <result column="is_display" jdbcType="BIT" property="isDisplay" />-->
+<!--    <result column="comment" jdbcType="VARCHAR" property="comment" />-->
+<!--  </resultMap>-->
+<!--  <sql id="Base_Column_List">-->
+<!--    id, username, mobile, email, name, password, is_admin, is_enabled, created_date, -->
+<!--    last_modified_date, created_by, last_modified_by, is_display, comment-->
+<!--  </sql>-->
+<!--  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">-->
+<!--    select -->
+<!--    <include refid="Base_Column_List" />-->
+<!--    from sys_user-->
+<!--    where id = #{id,jdbcType=VARCHAR}-->
+<!--  </select>-->
+<!--  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">-->
+<!--    delete from sys_user-->
+<!--    where id = #{id,jdbcType=VARCHAR}-->
+<!--  </delete>-->
+<!--  <insert id="insert" parameterType="com.test.model.po.SysUser">-->
+<!--    insert into sys_user (id, username, mobile, -->
+<!--      email, name, password, -->
+<!--      is_admin, is_enabled, created_date, -->
+<!--      last_modified_date, created_by, last_modified_by, -->
+<!--      is_display, comment)-->
+<!--    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, -->
+<!--      #{email,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, -->
+<!--      #{isAdmin,jdbcType=BIT}, #{isEnabled,jdbcType=BIT}, #{createdDate,jdbcType=TIMESTAMP}, -->
+<!--      #{lastModifiedDate,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{lastModifiedBy,jdbcType=VARCHAR}, -->
+<!--      #{isDisplay,jdbcType=BIT}, #{comment,jdbcType=VARCHAR})-->
+<!--  </insert>-->
+<!--  <insert id="insertSelective" parameterType="com.test.model.po.SysUser">-->
+<!--    insert into sys_user-->
+<!--    <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--      <if test="id != null">-->
+<!--        id,-->
+<!--      </if>-->
+<!--      <if test="username != null">-->
+<!--        username,-->
+<!--      </if>-->
+<!--      <if test="mobile != null">-->
+<!--        mobile,-->
+<!--      </if>-->
+<!--      <if test="email != null">-->
+<!--        email,-->
+<!--      </if>-->
+<!--      <if test="name != null">-->
+<!--        name,-->
+<!--      </if>-->
+<!--      <if test="password != null">-->
+<!--        password,-->
+<!--      </if>-->
+<!--      <if test="isAdmin != null">-->
+<!--        is_admin,-->
+<!--      </if>-->
+<!--      <if test="isEnabled != null">-->
+<!--        is_enabled,-->
+<!--      </if>-->
+<!--      <if test="createdDate != null">-->
+<!--        created_date,-->
+<!--      </if>-->
+<!--      <if test="lastModifiedDate != null">-->
+<!--        last_modified_date,-->
+<!--      </if>-->
+<!--      <if test="createdBy != null">-->
+<!--        created_by,-->
+<!--      </if>-->
+<!--      <if test="lastModifiedBy != null">-->
+<!--        last_modified_by,-->
+<!--      </if>-->
+<!--      <if test="isDisplay != null">-->
+<!--        is_display,-->
+<!--      </if>-->
+<!--      <if test="comment != null">-->
+<!--        comment,-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--    <trim prefix="values (" suffix=")" suffixOverrides=",">-->
+<!--      <if test="id != null">-->
+<!--        #{id,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="username != null">-->
+<!--        #{username,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="mobile != null">-->
+<!--        #{mobile,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="email != null">-->
+<!--        #{email,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="name != null">-->
+<!--        #{name,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="password != null">-->
+<!--        #{password,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="isAdmin != null">-->
+<!--        #{isAdmin,jdbcType=BIT},-->
+<!--      </if>-->
+<!--      <if test="isEnabled != null">-->
+<!--        #{isEnabled,jdbcType=BIT},-->
+<!--      </if>-->
+<!--      <if test="createdDate != null">-->
+<!--        #{createdDate,jdbcType=TIMESTAMP},-->
+<!--      </if>-->
+<!--      <if test="lastModifiedDate != null">-->
+<!--        #{lastModifiedDate,jdbcType=TIMESTAMP},-->
+<!--      </if>-->
+<!--      <if test="createdBy != null">-->
+<!--        #{createdBy,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="lastModifiedBy != null">-->
+<!--        #{lastModifiedBy,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="isDisplay != null">-->
+<!--        #{isDisplay,jdbcType=BIT},-->
+<!--      </if>-->
+<!--      <if test="comment != null">-->
+<!--        #{comment,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--  </insert>-->
+<!--  <update id="updateByPrimaryKeySelective" parameterType="com.test.model.po.SysUser">-->
+<!--    update sys_user-->
+<!--    <set>-->
+<!--      <if test="username != null">-->
+<!--        username = #{username,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="mobile != null">-->
+<!--        mobile = #{mobile,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="email != null">-->
+<!--        email = #{email,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="name != null">-->
+<!--        name = #{name,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="password != null">-->
+<!--        password = #{password,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="isAdmin != null">-->
+<!--        is_admin = #{isAdmin,jdbcType=BIT},-->
+<!--      </if>-->
+<!--      <if test="isEnabled != null">-->
+<!--        is_enabled = #{isEnabled,jdbcType=BIT},-->
+<!--      </if>-->
+<!--      <if test="createdDate != null">-->
+<!--        created_date = #{createdDate,jdbcType=TIMESTAMP},-->
+<!--      </if>-->
+<!--      <if test="lastModifiedDate != null">-->
+<!--        last_modified_date = #{lastModifiedDate,jdbcType=TIMESTAMP},-->
+<!--      </if>-->
+<!--      <if test="createdBy != null">-->
+<!--        created_by = #{createdBy,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="lastModifiedBy != null">-->
+<!--        last_modified_by = #{lastModifiedBy,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="isDisplay != null">-->
+<!--        is_display = #{isDisplay,jdbcType=BIT},-->
+<!--      </if>-->
+<!--      <if test="comment != null">-->
+<!--        comment = #{comment,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--    </set>-->
+<!--    where id = #{id,jdbcType=VARCHAR}-->
+<!--  </update>-->
+<!--  <update id="updateByPrimaryKey" parameterType="com.test.model.po.SysUser">-->
+<!--    update sys_user-->
+<!--    set username = #{username,jdbcType=VARCHAR},-->
+<!--      mobile = #{mobile,jdbcType=VARCHAR},-->
+<!--      email = #{email,jdbcType=VARCHAR},-->
+<!--      name = #{name,jdbcType=VARCHAR},-->
+<!--      password = #{password,jdbcType=VARCHAR},-->
+<!--      is_admin = #{isAdmin,jdbcType=BIT},-->
+<!--      is_enabled = #{isEnabled,jdbcType=BIT},-->
+<!--      created_date = #{createdDate,jdbcType=TIMESTAMP},-->
+<!--      last_modified_date = #{lastModifiedDate,jdbcType=TIMESTAMP},-->
+<!--      created_by = #{createdBy,jdbcType=VARCHAR},-->
+<!--      last_modified_by = #{lastModifiedBy,jdbcType=VARCHAR},-->
+<!--      is_display = #{isDisplay,jdbcType=BIT},-->
+<!--      comment = #{comment,jdbcType=VARCHAR}-->
+<!--    where id = #{id,jdbcType=VARCHAR}-->
+<!--  </update>-->
 </mapper>

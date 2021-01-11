@@ -1,6 +1,7 @@
-package com.test.mapper;
+package com.test.dao;
 
 import com.test.model.po.SysUser;
+
 
 public interface SysUserMapper {
     int deleteByPrimaryKey(Long id);

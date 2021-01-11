@@ -20,7 +20,7 @@
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- 生成的映射文件包名和位置 --> <!-- 4 -->
-		<sqlMapGenerator targetPackage="com.test.mapper" targetProject="/Users/chenxu/Downloads/SpringCloud/generator/src">
+		<sqlMapGenerator targetPackage="com.test.dao" targetProject="/Users/chenxu/Downloads/SpringCloud/generator/src">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		<!-- 生成DAO的包名和位置 --> <!-- 5 -->

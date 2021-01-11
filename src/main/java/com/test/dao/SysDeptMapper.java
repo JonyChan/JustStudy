@@ -1,6 +1,8 @@
-package com.test.mapper;
+package com.test.dao;
 
 import com.test.model.po.SysDept;
+
+import java.util.List;
 
 public interface SysDeptMapper {
     int deleteByPrimaryKey(Long id);
@@ -14,4 +16,6 @@ public interface SysDeptMapper {
     int updateByPrimaryKeySelective(SysDept record);
 
     int updateByPrimaryKey(SysDept record);
+
+    List<SysDept> getAllDept();
 }
