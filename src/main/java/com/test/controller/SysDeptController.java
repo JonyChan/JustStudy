@@ -49,7 +49,7 @@ public class SysDeptController {
     @RequestMapping("/update.json")
     @ResponseBody
     public JsonData updateDept(DeptParam param){
-        sysDeptService.save(param);
+        sysDeptService.update(param);
         return JsonData.success();
     }
 

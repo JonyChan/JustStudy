@@ -43,7 +43,7 @@ public class SysDeptService {
         sysDeptMapper.insertSelective(dept);
     }
 
-    public void update(DeptParam param){
+    public void  update(DeptParam param){
 
         BeanValidator.validateObject(param);
 
@@ -65,7 +65,7 @@ public class SysDeptService {
                 .seq(param.getSeq())
                 .remark(param.getRemark())
                 .build();
-        dept.setLevel(LevelUtil.calculatorLevel(getLevel(param.getId()), param.getParentId()));
+        dept.setLevel(LevelUtil.calculatorLevel(getLevel(param.getParentId()), param.getParentId()));
         dept.setOperator("System");
         dept.setOperatorIp("127.0.0.1");
         dept.setOperatorTime(new Date());

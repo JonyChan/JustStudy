@@ -174,27 +174,7 @@
     {{/deptList}}
 </ol>
 </script>
-<script id="userListTemplate" type="x-tmpl-mustache">
-{{#userList}}
-<tr role="row" class="user-name odd" data-id="{{id}}"><!--even -->
-    <td><a href="#" class="user-edit" data-id="{{id}}">{{username}}</a></td>
-    <td>{{showDeptName}}</td>
-    <td>{{mail}}</td>
-    <td>{{telephone}}</td>
-    <td>{{#bold}}{{showStatus}}{{/bold}}</td> <!-- 此处套用函数对status做特殊处理 -->
-    <td>
-        <div class="hidden-sm hidden-xs action-buttons">
-            <a class="green user-edit" href="#" data-id="{{id}}">
-                <i class="ace-icon fa fa-pencil bigger-100"></i>
-            </a>
-            <a class="red user-acl" href="#" data-id="{{id}}">
-                <i class="ace-icon fa fa-flag bigger-100"></i>
-            </a>
-        </div>
-    </td>
-</tr>
-{{/userList}}
-</script>
+<%-- --%>
 
 <script type="application/javascript">
     $(function() {
@@ -218,6 +198,7 @@
                 url: "/sys/dept/tree.json",
                 success : function (result) {
                     //result.ret返回值布尔类型
+                    //ret返回值
                     if (result.ret) {
                         deptList = result.data;
                         var rendered = Mustache.render(deptListTemplate, {deptList: result.data});
@@ -280,7 +261,9 @@
             });
 
             $(".dept-edit").click(function(e) {
+                //阻拦默认事件
                 e.preventDefault();
+                //阻拦冒泡
                 e.stopPropagation();
                 var deptId = $(this).attr("data-id");
                 $("#dialog-dept-form").dialog({

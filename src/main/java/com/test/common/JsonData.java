@@ -33,6 +33,7 @@ public class JsonData {
 
     public static JsonData success(Object data){
         JsonData jd = new JsonData();
+        jd.ret=true;
         jd.data=data;
         return jd;
     }
