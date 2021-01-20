@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC
+        "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!--    对应configuration -->
+<!--    <settings>-->
+<!--        <setting name="cache" value="false"/>-->
+<!--    </settings>-->
+
+<!--&lt;!&ndash;   方便在SQL中写&ndash;&gt;-->
+<!--    <typeAliases>-->
+<!--        <typeAlias type="com.xxx" alias=""/>-->
+<!--    </typeAliases>-->
+<!--    -->
+<!--&lt;!&ndash;    监听事件，监听SQL&ndash;&gt;-->
+<!--    <plugins>-->
+<!--        <plugin interceptor=""></plugin>-->
+<!--    </plugins>-->
+</configuration>
+

@@ -1,11 +1,13 @@
 package com.test.service;
 
 import com.google.common.base.Preconditions;
+import com.test.common.RequestHolder;
 import com.test.dao.SysDeptMapper;
 import com.test.exception.ParamException;
 import com.test.model.po.SysDept;
 import com.test.param.DeptParam;
 import com.test.util.BeanValidator;
+import com.test.util.IpUtil;
 import com.test.util.LevelUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -36,8 +38,8 @@ public class SysDeptService {
                 .remark(param.getRemark())
                 .build();
         dept.setLevel(LevelUtil.calculatorLevel(getLevel(param.getParentId()), param.getParentId()));
-        dept.setOperator("System");
-        dept.setOperatorIp("127.0.0.1");
+        dept.setOperator(RequestHolder.getCurrentUser().getUsername());
+        dept.setOperatorIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
         dept.setOperatorTime(new Date());
         //only insert which is not null
         sysDeptMapper.insertSelective(dept);
@@ -66,8 +68,8 @@ public class SysDeptService {
                 .remark(param.getRemark())
                 .build();
         dept.setLevel(LevelUtil.calculatorLevel(getLevel(param.getParentId()), param.getParentId()));
-        dept.setOperator("System");
-        dept.setOperatorIp("127.0.0.1");
+        dept.setOperator(RequestHolder.getCurrentUser().getUsername());
+        dept.setOperatorIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
         dept.setOperatorTime(new Date());
         //only insert which is not null
         updateWithChild(before,dept);

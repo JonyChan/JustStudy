@@ -3,11 +3,13 @@ package com.test.service;
 import com.google.common.base.Preconditions;
 import com.test.beans.PageQuery;
 import com.test.beans.PageResult;
+import com.test.common.RequestHolder;
 import com.test.dao.SysUserMapper;
 import com.test.exception.ParamException;
 import com.test.model.po.SysUser;
 import com.test.param.UserParam;
 import com.test.util.BeanValidator;
+import com.test.util.IpUtil;
 import com.test.util.MD5Util;
 import org.springframework.stereotype.Service;
 
@@ -48,8 +50,8 @@ public class SysUserService {
                 .status(param.getStatus())
                 .remark(param.getRemark())
                 .build();
-        sysUser.setOperator("System");
-        sysUser.setOperatorIp("127.0.0.1");
+        sysUser.setOperator(RequestHolder.getCurrentUser().getUsername());
+        sysUser.setOperatorIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
         sysUser.setOperatorTime(new Date());
 
         sysUserMapper.insertSelective(sysUser);
@@ -78,8 +80,8 @@ public class SysUserService {
                 .status(param.getStatus())
                 .remark(param.getRemark())
                 .build();
-        after.setOperator("System");
-        after.setOperatorIp("127.0.0.1");
+        after.setOperator(RequestHolder.getCurrentUser().getUsername());
+        after.setOperatorIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
         after.setOperatorTime(new Date());
 
         sysUserMapper.updateByPrimaryKeySelective(after);

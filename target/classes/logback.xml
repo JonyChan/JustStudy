@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+<!--可以有多个appender logger但是只有一个root ，一个appender对应一个logger-->
+<!--    appender是定义log的输出形式-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd hh:mm:ss.SSS} [%thread] %-5level -%msg%n</pattern>
+        </encoder>
+    </appender>
+<!--    logger是制定的类的log-->
+    <logger></logger>
+<!--    trace<debug<info<warning<error-->
+<!--    通常设置级别是info-->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

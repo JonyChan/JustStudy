@@ -1,15 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: chenxu
-  Date: 2021/1/13
-  Time: 21:24
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Dept Management</title>
+    <title>部门管理</title>
     <jsp:include page="/common/backend_common.jsp"/>
+    <jsp:include page="/common/page.jsp"/>
 </head>
 <body class="no-skin" youdao="bind" style="background: white">
 <input id="gritter-light" checked="" type="checkbox" class="ace ace-switch ace-switch-5"/>
@@ -155,7 +149,6 @@
 
 <script id="deptListTemplate" type="x-tmpl-mustache">
 <ol class="dd-list">
-<%--传入deptList--%>
     {{#deptList}}
         <li class="dd-item dd2-item dept-name" id="dept_{{id}}" href="javascript:void(0)" data-id="{{id}}">
             <div class="dd2-content" style="cursor:pointer;">
@@ -174,7 +167,27 @@
     {{/deptList}}
 </ol>
 </script>
-<%-- --%>
+<script id="userListTemplate" type="x-tmpl-mustache">
+{{#userList}}
+<tr role="row" class="user-name odd" data-id="{{id}}"><!--even -->
+    <td><a href="#" class="user-edit" data-id="{{id}}">{{username}}</a></td>
+    <td>{{showDeptName}}</td>
+    <td>{{mail}}</td>
+    <td>{{phone}}</td>
+    <td>{{#bold}}{{showStatus}}{{/bold}}</td> <!-- 此处套用函数对status做特殊处理 -->
+    <td>
+        <div class="hidden-sm hidden-xs action-buttons">
+            <a class="green user-edit" href="#" data-id="{{id}}">
+                <i class="ace-icon fa fa-pencil bigger-100"></i>
+            </a>
+            <a class="red user-acl" href="#" data-id="{{id}}">
+                <i class="ace-icon fa fa-flag bigger-100"></i>
+            </a>
+        </div>
+    </td>
+</tr>
+{{/userList}}
+</script>
 
 <script type="application/javascript">
     $(function() {
@@ -186,7 +199,6 @@
         var lastClickDeptId = -1;
 
         var deptListTemplate = $('#deptListTemplate').html();
-        //通过mustache使用
         Mustache.parse(deptListTemplate);
         var userListTemplate = $('#userListTemplate').html();
         Mustache.parse(userListTemplate);
@@ -197,8 +209,6 @@
             $.ajax({
                 url: "/sys/dept/tree.json",
                 success : function (result) {
-                    //result.ret返回值布尔类型
-                    //ret返回值
                     if (result.ret) {
                         deptList = result.data;
                         var rendered = Mustache.render(deptListTemplate, {deptList: result.data});
@@ -215,14 +225,13 @@
         // 递归渲染部门树
         function recursiveRenderDept(deptList) {
             if(deptList && deptList.length > 0) {
-                //$ this represent that using JQuery grammar
                 $(deptList).each(function (i, dept) {
-                    deptMap[dept.id] = dept;
-                    if (dept.deptList.length > 0) {
-                        var rendered = Mustache.render(deptListTemplate, {deptList: dept.deptList});
-                        $("#dept_" + dept.id).append(rendered);
-                        recursiveRenderDept(dept.deptList);
-                    }
+                     deptMap[dept.id] = dept;
+                     if (dept.deptList.length > 0) {
+                         var rendered = Mustache.render(deptListTemplate, {deptList: dept.deptList});
+                         $("#dept_" + dept.id).append(rendered);
+                         recursiveRenderDept(dept.deptList);
+                     }
                 })
             }
         }
@@ -261,9 +270,7 @@
             });
 
             $(".dept-edit").click(function(e) {
-                //阻拦默认事件
                 e.preventDefault();
-                //阻拦冒泡
                 e.stopPropagation();
                 var deptId = $(this).attr("data-id");
                 $("#dialog-dept-form").dialog({
@@ -435,7 +442,7 @@
                             $("#deptSelectId").val(targetUser.deptId);
                             $("#userName").val(targetUser.username);
                             $("#userMail").val(targetUser.mail);
-                            $("#userTelephone").val(targetUser.telephone);
+                            $("#userTelephone").val(targetUser.phone);
                             $("#userStatus").val(targetUser.status);
                             $("#userRemark").val(targetUser.remark);
                             $("#userId").val(targetUser.id);
