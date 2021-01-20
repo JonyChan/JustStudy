@@ -1,6 +1,8 @@
 package com.test.service;
 
 import com.google.common.base.Preconditions;
+import com.test.beans.PageQuery;
+import com.test.beans.PageResult;
 import com.test.dao.SysUserMapper;
 import com.test.exception.ParamException;
 import com.test.model.po.SysUser;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Created by:chenxu
@@ -92,5 +95,18 @@ public class SysUserService {
 
     public SysUser findByKeyword(String keyword){
         return sysUserMapper.findByKeyword(keyword);
+    }
+
+    public PageResult<SysUser> getPageByDeptId(Long deptId, PageQuery query){
+        BeanValidator.check(query);
+        int count = sysUserMapper.countByDeptId(deptId);
+        if (count>0){
+            List<SysUser> list = sysUserMapper.getPageByDeptId(deptId, query);
+            return PageResult.<SysUser>builder()
+                    .total(count)
+                    .data(list)
+                    .build();
+        }
+        return PageResult.<SysUser>builder().build();
     }
 }

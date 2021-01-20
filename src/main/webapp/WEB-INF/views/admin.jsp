@@ -98,7 +98,7 @@
 
                 <ul class="submenu">
                     <li class="">
-                        <a class="popstyle" href="/sys/dept/page.json" target="_blank">
+                        <a class="popstyle" href="/sys/dept/dept.page" target="_blank">
                             <i class="menu-icon fa fa-caret-right"></i>
                             用户管理
                         </a>
@@ -164,7 +164,7 @@
     </div>
 
     <div class="main-content">
-        <iframe id="innerFrame" src="/sys/dept/dept.page" width="99%" style="min-height: 768px;"></iframe>
+        <iframe id="innerFrame" src="/sys/dept/page.jsp" width="99%" style="min-height: 768px;"></iframe>
     </div>
     <!-- /.main-content -->
 

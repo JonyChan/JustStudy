@@ -32,6 +32,7 @@
 </script>
 
 <script type="text/javascript">
+    //mustach enginee parse
     var paginateTemplate = $("#paginateTemplate").html();
     Mustache.parse(paginateTemplate);
     

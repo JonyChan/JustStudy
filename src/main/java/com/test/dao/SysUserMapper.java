@@ -1,7 +1,10 @@
 package com.test.dao;
 
+import com.test.beans.PageQuery;
 import com.test.model.po.SysUser;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 
 public interface SysUserMapper {
@@ -22,4 +25,8 @@ public interface SysUserMapper {
     int countByMail(@Param("mail") String mail, @Param("id") Long id);
 
     int countByPhone(@Param("phone") String phone, @Param("id") Long id);
+
+    int countByDeptId(@Param("deptId") Long deptId);
+
+    List<SysUser> getPageByDeptId(@Param("deptId") Long deptId,@Param("query") PageQuery query);
 }
