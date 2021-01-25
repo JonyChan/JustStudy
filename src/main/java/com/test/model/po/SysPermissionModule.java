@@ -1,7 +1,14 @@
 package com.test.model.po;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class SysPermissionModule {
     private Long id;
 
@@ -12,6 +19,8 @@ public class SysPermissionModule {
     private String level;
 
     private Integer seq;
+
+    private Integer status;
 
     private String remark;
 

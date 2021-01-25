@@ -14,4 +14,6 @@ public interface SysPermissionModuleMapper {
     int updateByPrimaryKeySelective(SysPermissionModule record);
 
     int updateByPrimaryKey(SysPermissionModule record);
+
+    int countByNameAndParentId();
 }
