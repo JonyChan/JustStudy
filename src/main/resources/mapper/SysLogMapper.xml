@@ -42,7 +42,7 @@
       #{status,jdbcType=INTEGER}, #{oldValue,jdbcType=LONGVARCHAR}, #{newValue,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.test.model.po.SysLogWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.test.model.po.SysLogWithBLOBs" keyProperty="id" useGeneratedKeys="true">
     insert into sys_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -155,4 +155,40 @@
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  <select id="countBySearchDto" parameterType="map" resultMap="int">
+    select count(1)
+    from sys_log
+    <include refid="queryCondition"/>
+  </select>
+  <select id="getPageListBySearchDto" parameterType="map" resultMap="ResultMapWithBLOBs">
+    select * 
+    from sys_log
+    order by operator_time DESC
+    limit #{query.offset},#{query.size}
+    <include refid="queryCondition"></include>
+  </select>
+
+  <sql id="queryCondition">
+    <where>
+      <if test="dto.type != null">
+        AND type = #{dto.type}
+      </if>
+      <if test="dto.beforeSeg!=null and dto.beforeSeg != ''">
+        AND old_value like #{dto.beforeSeg}
+      </if>
+      <if test="dto.afterSeg!=null and dto.afterSeg != ''">
+        AND new_value like #{dto.afterSeg}
+      </if>
+      <if test="dto.operator !=null and dto.operator != ''">
+        AND operator like #{dto.operator}
+      </if>
+      <if test="dto.fromTime != null">
+        AND operator_time &gt; = #{dto.fromTime}
+      </if>
+      <if test="dto.toTime != null">
+        AND operator_time &lt; = #{dto.toTime}
+      </if>
+    </where>
+  </sql>
 </mapper>
