@@ -12,9 +12,12 @@ public class Test {
 //        String a = "1";
 //        String b = "+";
 //        String c = "2";
-        System.out.println(PasswordUtil.randomPassword());
-        Thread.sleep(0);
-        System.out.println(PasswordUtil.randomPassword());
-        System.out.println(PasswordUtil.randomPassword());
+//        System.out.println(PasswordUtil.randomPassword());
+//        Thread.sleep(0);
+//        System.out.println(PasswordUtil.randomPassword());
+//        System.out.println(PasswordUtil.randomPassword());
+
+        System.out.println(7%2);
+
     }
 }
